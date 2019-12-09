@@ -27,6 +27,13 @@ TagManager:
   - pit
   - symbol_O_Goal
   - symbol_X_Goal
+  - banana
+  - redGoal
+  - orangeGoal
+  - orangeBlock
+  - redBlock
+  - badBanana
+  - Bread
   layers:
   - Default
   - TransparentFX
