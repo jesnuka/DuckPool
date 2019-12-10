@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using MLAgents;
-using MLAgents.Sensor;
 using System;
 
 public class DuckAgent : Agent
@@ -10,40 +9,41 @@ public class DuckAgent : Agent
     public GameObject heartPrefab;
     //public GameObject 
 
-    private bool isFull;
+    //private bool isFull;
     private DuckPool duckPool;
     private Animator animator;
     //private RayPerceptionSensorComponent3D rayPerception;
     private RayPerception3D rayPerception;
     //private GameObject baby;
     
-
     public override void AgentAction(float[] vectorAction)
     {
         float forward = vectorAction[0];
         float leftOrRight = 0f;
-        if (vectorAction[1] == 1f)
+        if (vectorAction[0] == 1f)
         {
             leftOrRight = -1f;
         }
-        else if (vectorAction[1] == 2f)
+        else if (vectorAction[0] == 2f)
         {
             leftOrRight = 1f;
+        }
+        else if(vectorAction[0] == 0f)
+        {
+            forward = 1f;
         }
         animator.SetFloat("Vertical", forward);
         animator.SetFloat("Horizontal", leftOrRight);
 
         //negat. reward every step
         AddReward(-1f / agentParameters.maxStep);
-        
-
-
     }
 
     public override void AgentReset()
     {
         //isFull = false;
         duckPool.ResetArea();
+        SetReward(0f);
 
     }
 

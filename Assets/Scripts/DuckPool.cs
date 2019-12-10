@@ -25,7 +25,6 @@ public class DuckPool : Area
         PlaceDuck();
         //PlaceBaby();
         SpawnBread(4, breadSpeed);
-        print("THis is done a lot");
     }
 
     public void RemoveBread(GameObject bread)
@@ -90,7 +89,6 @@ public class DuckPool : Area
     }
     private void Update()
     {
-        rewardText.text = duckAgent.GetReward().ToString();
-        print(duckAgent.GetReward());
+        rewardText.text = duckAgent.GetReward().ToString("0.00");
     }
 }
