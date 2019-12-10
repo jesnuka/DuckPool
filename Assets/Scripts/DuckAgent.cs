@@ -20,18 +20,18 @@ public class DuckAgent : Agent
     {
         float forward = vectorAction[0];
         float leftOrRight = 0f;
-        if (vectorAction[0] == 1f)
+        if (vectorAction[1] == 1f)
         {
             leftOrRight = -1f;
         }
-        else if (vectorAction[0] == 2f)
+        else if (vectorAction[1] == 2f)
         {
             leftOrRight = 1f;
         }
-        else if(vectorAction[0] == 0f)
+       /* else if(vectorAction[0] == 0f)
         {
             forward = 1f;
-        }
+        }*/
         animator.SetFloat("Vertical", forward);
         animator.SetFloat("Horizontal", leftOrRight);
 
@@ -61,7 +61,7 @@ public class DuckAgent : Agent
         // detectableobjects: list of tags which correspond to object types agent can see
         // startoffset: starting height offset of ray from center of agent
         // endoffset: ending height offset of ray from center of agent
-        float rayDistance = 20f;
+        float rayDistance = 80f;
         float[] rayAngles = { -30f, -60f, -90f, -120f, -150f };
         string[] detectableObjects = { "bread", "wall" };
         AddVectorObs(rayPerception.Perceive(rayDistance, rayAngles, detectableObjects, 0f, 0f));
