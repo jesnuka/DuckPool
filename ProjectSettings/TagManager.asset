@@ -33,7 +33,7 @@ TagManager:
   - orangeBlock
   - redBlock
   - badBanana
-  - Bread
+  - bread
   layers:
   - Default
   - TransparentFX

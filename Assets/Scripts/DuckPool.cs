@@ -8,7 +8,7 @@ using System;
 public class DuckPool : Area
 {
     public DuckAgent duckAgent;
-    public GameObject duckBaby;
+    //public GameObject duckBaby;
     public Bread breadPrefab;
     public TextMeshPro rewardText;
 
@@ -23,8 +23,9 @@ public class DuckPool : Area
     {
         RemoveAllBread();
         PlaceDuck();
-        PlaceBaby();
+        //PlaceBaby();
         SpawnBread(4, breadSpeed);
+        print("THis is done a lot");
     }
 
     public void RemoveBread(GameObject bread)
@@ -63,22 +64,24 @@ public class DuckPool : Area
 
     private void PlaceDuck()
     {
-        duckAgent.transform.position = ChooseRandomPosition(transform.position, 0f, 360f, 0f, 7f) + Vector3.up * .5f;
+        duckAgent.transform.position = ChooseRandomPosition(transform.position, 0f, 360f, 0f, 3f);
+        duckAgent.transform.position = new Vector3(duckAgent.transform.position.x , -1.08f, duckAgent.transform.position.z);
         duckAgent.transform.rotation = Quaternion.Euler(0f, UnityEngine.Random.Range(0f, 360f), 0f);
     }
 
-    private void PlaceBaby()
+   /* private void PlaceBaby()
     {
         duckBaby.transform.position = duckAgent.transform.position;
         duckBaby.transform.rotation = duckAgent.transform.rotation;
-    }
+    }*/
 
     private void SpawnBread(int count, float breadSpeed)
     {
         for(int i = 0; i < count; i++)
         {
             GameObject breadObject = Instantiate<GameObject>(breadPrefab.gameObject);
-            breadObject.transform.position = ChooseRandomPosition(transform.position, 0f, 360f, 0f, 9f) + Vector3.up * .5f;
+            breadObject.transform.position = ChooseRandomPosition(transform.position, 0f, 360f, 0f, 4f) + Vector3.up * .5f;
+            breadObject.transform.position = new Vector3(breadObject.transform.position.x, -1.08f, breadObject.transform.position.z);
             breadObject.transform.rotation = Quaternion.Euler(0f, UnityEngine.Random.Range(0f, 360f), 0f);
             breadObject.transform.parent = transform;
             breadList.Add(breadObject);
@@ -88,5 +91,6 @@ public class DuckPool : Area
     private void Update()
     {
         rewardText.text = duckAgent.GetReward().ToString();
+        print(duckAgent.GetReward());
     }
 }
