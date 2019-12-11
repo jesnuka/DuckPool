@@ -19,7 +19,7 @@ public class DuckAC : Academy
         foreach (DuckPool duckPool in duckPools)
         {
             duckPool.breadSpeed = resetParameters["bread_speed"];
-            duckPool.feedRadius = resetParameters["feed_radius"];
+            //duckPool.feedRadius = resetParameters["feed_radius"];
             duckPool.ResetArea();
         }
     }

@@ -15,7 +15,8 @@ public class DuckAgent : Agent
     //private RayPerceptionSensorComponent3D rayPerception;
     private RayPerception3D rayPerception;
     //private GameObject baby;
-    
+
+
     public override void AgentAction(float[] vectorAction)
     {
         float forward = vectorAction[0];
@@ -77,13 +78,8 @@ public class DuckAgent : Agent
 
         animator = GetComponent<Animator>();
         rayPerception = GetComponent<RayPerception3D>();
+        transform.rotation = Quaternion.Euler(0f, transform.rotation.y, 0f);
 
-    }
-
-    private void FixedUpdate()
-    {
-        //if (Vector3.Distance(transform.position, ))
-        //EatBread();
     }
 
     private void OnCollisionEnter(Collision collision)

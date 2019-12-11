@@ -44,7 +44,6 @@ public class DuckPool : Area
 
         return center + Quaternion.Euler(0f, UnityEngine.Random.Range(minAngle, maxAngle), 0f) * Vector3.forward * radius;
     }
-
     private void RemoveAllBread()
     {
         if (breadList != null)
@@ -65,7 +64,7 @@ public class DuckPool : Area
     {
         duckAgent.transform.position = ChooseRandomPosition(transform.position, 0f, 360f, 0f, 3f);
         duckAgent.transform.position = new Vector3(duckAgent.transform.position.x , -1.08f, duckAgent.transform.position.z);
-        duckAgent.transform.rotation = Quaternion.Euler(0f, UnityEngine.Random.Range(0f, 360f), 0f);
+        //duckAgent.transform.rotation = Quaternion.Euler(0f, UnityEngine.Random.Range(0f, 360f), 0f);
     }
 
    /* private void PlaceBaby()
@@ -76,10 +75,24 @@ public class DuckPool : Area
 
     private void SpawnBread(int count, float breadSpeed)
     {
-        for(int i = 0; i < count; i++)
+        //Randomizer
+        /*for(int i = 0; i < count; i++)
         {
             GameObject breadObject = Instantiate<GameObject>(breadPrefab.gameObject);
             breadObject.transform.position = ChooseRandomPosition(transform.position, 0f, 360f, 0f, 4f) + Vector3.up * .5f;
+            breadObject.transform.position = new Vector3(breadObject.transform.position.x, -1.08f, breadObject.transform.position.z);
+            breadObject.transform.rotation = Quaternion.Euler(0f, UnityEngine.Random.Range(0f, 360f), 0f);
+            breadObject.transform.parent = transform;
+            breadList.Add(breadObject);
+            breadObject.GetComponent<Bread>().breadSpeed = breadSpeed;
+        }*/
+
+        //Same locations
+        for (int i = 0; i < count; i++)
+        {
+            GameObject breadObject = Instantiate<GameObject>(breadPrefab.gameObject);
+            //breadObject.transform.position = ChooseRandomPosition(transform.position, 0f, 360f, 0f, 4f) + Vector3.up * .5f;
+            breadObject.transform.position = (transform.position + Quaternion.Euler(0f, 13f*i+i*24f, 0f) * Vector3.forward * 1f*i);
             breadObject.transform.position = new Vector3(breadObject.transform.position.x, -1.08f, breadObject.transform.position.z);
             breadObject.transform.rotation = Quaternion.Euler(0f, UnityEngine.Random.Range(0f, 360f), 0f);
             breadObject.transform.parent = transform;
